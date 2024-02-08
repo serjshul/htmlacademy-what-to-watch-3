@@ -12,3 +12,5 @@ export type Film = {
   preview: string;
   video: string;
 };
+
+export type Films = Film[];
