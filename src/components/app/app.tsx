@@ -11,7 +11,7 @@ import PrivateRoute from '../private-route/private-route.tsx';
 import {Films} from '../../types/film.ts';
 
 type AppProps = {
-  films: Films
+  films: Films;
 }
 
 export default function App({films}: AppProps) {
@@ -19,11 +19,9 @@ export default function App({films}: AppProps) {
     <BrowserRouter>
       <Routes>
         <Route path={AppRoute.Main} element={
-          <MainScreen
-            name={films[0].title}
-            genre={films[0].genre}
-            year={films[0].year}/>
-        } />
+          <MainScreen films={films}/>
+        }
+        />
         <Route path={AppRoute.SignIn} element={<SignInScreen />} />
         <Route path={AppRoute.MyList}
           element={
