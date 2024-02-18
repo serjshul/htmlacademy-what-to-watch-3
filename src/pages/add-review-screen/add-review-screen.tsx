@@ -1,4 +1,10 @@
-export default function AddReviewScreen() {
+import {Films} from "../../types/film.ts";
+
+type AddReviewScreenProps = {
+  films: Films;
+}
+
+export default function AddReviewScreen({}: AddReviewScreenProps) {
   return (
     <html lang="en">
       <head>

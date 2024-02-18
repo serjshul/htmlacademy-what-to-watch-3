@@ -26,13 +26,13 @@ export default function App({films}: AppProps) {
         <Route path={AppRoute.MyList}
           element={
             <PrivateRoute authorizationStatus={AuthorizationStatus.NoAuth}>
-              <MyListScreen />
+              <MyListScreen films={films}/>
             </PrivateRoute>
           }
         />
         <Route path={AppRoute.Films} element={<MovieScreen />} />
-        <Route path={AppRoute.AddReview} element={<AddReviewScreen />} />
-        <Route path={AppRoute.Player} element={<PlayerScreen />} />
+        <Route path={AppRoute.AddReview} element={<AddReviewScreen films={films}/>} />
+        <Route path={AppRoute.Player} element={<PlayerScreen films={films}/>} />
         <Route path="*" element={<PageNotFoundScreen />} />
       </Routes>
     </BrowserRouter>

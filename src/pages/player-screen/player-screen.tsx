@@ -1,4 +1,10 @@
-export default function PlayerScreen() {
+import {Films} from "../../types/film.ts";
+
+type PlayerScreenProps = {
+  films: Films;
+}
+
+export default function PlayerScreen({}: PlayerScreenProps) {
   return (
     <html lang="en">
       <head>
