@@ -1,11 +1,18 @@
 import SmallFilmCard from '../../components/small-film-card.tsx';
 import {Films} from '../../types/film.ts';
+import {useState} from 'react';
 
 type MainScreenProps = {
   films: Films;
 }
 
 export default function MainScreen({films}: MainScreenProps) {
+  const [, setActiveCardId] = useState('initialValue');
+
+  const handleCardFocusEvent = (evt: any) => {
+    setActiveCardId(evt.currentTarget.id);
+  };
+
   return (
     <html lang="en">
       <head>
@@ -119,7 +126,12 @@ export default function MainScreen({films}: MainScreenProps) {
 
             <div className="catalog__films-list">
               {films.map((film) =>
-                <SmallFilmCard key={film.title} title={film.title} preview={film.preview} />
+                <SmallFilmCard
+                  id={film.id}
+                  key={film.title}
+                  title={film.title}
+                  preview={film.preview}
+                  handleCardFocus={handleCardFocusEvent}/>
               )}
             </div>
 

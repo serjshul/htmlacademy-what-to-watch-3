@@ -2,6 +2,7 @@ import {Film} from '../types/film.ts';
 
 export const films: Film[] = [
   {
+    id: '423956',
     title: 'Interstellar',
     genre: 'Sci-Fi',
     director: 'Christopher Nolan',
@@ -22,6 +23,7 @@ export const films: Film[] = [
     video: 'https://www.youtube.com/embed/m2vijtILDuk?si=-tGEalVY8Wg7oI2r'
   },
   {
+    id: '532598',
     title: 'Hot Summer Nights',
     genre: 'Romance',
     director: 'Elijah Bynum',
@@ -41,6 +43,7 @@ export const films: Film[] = [
     video: 'https://www.youtube.com/embed/O5ROSS9ReUY?si=bumj4gK_9fxi_z4N'
   },
   {
+    id: '495427',
     title: 'Asteroid City',
     genre: 'Comedy',
     director: 'Wes Anderson',
@@ -64,6 +67,7 @@ export const films: Film[] = [
     video: 'https://www.youtube.com/embed/9FXCSXuGTF4?si=MagsfQCpdkAZZR6I'
   },
   {
+    id: '797749',
     title: 'Legally Blonde',
     genre: 'Comedy',
     director: 'Robert Luketic',
@@ -84,6 +88,7 @@ export const films: Film[] = [
     video: 'https://www.youtube.com/embed/vWOHwI_FgAo?si=lc0bzlT8pzwvUeHY'
   },
   {
+    id: '813963',
     title: 'American Psycho',
     genre: 'Crime',
     director: 'Mary Harron',
@@ -104,6 +109,7 @@ export const films: Film[] = [
     video: 'https://www.youtube.com/embed/81mibtQWWBg?si=bVSmqGRE6LnJFVjR'
   },
   {
+    id: '799280',
     title: 'The Devil Wears Prada',
     genre: 'Comedy',
     director: 'David Frankel',
@@ -124,6 +130,7 @@ export const films: Film[] = [
     video: 'https://www.youtube.com/embed/6ZOZwUQKu3E?si=ItKQeIOHn8tVHydM'
   },
   {
+    id: '252737',
     title: 'The Hunger Games: The Ballad of Songbirds & Snakes',
     genre: 'Action',
     director: 'Francis Lawrence',
@@ -144,6 +151,7 @@ export const films: Film[] = [
     video: 'https://www.youtube.com/embed/RDE6Uz73A7g?si=lNhckgnqayH1q1H'
   },
   {
+    id: '187158',
     title: 'The Divergent Series: Insurgent',
     genre: 'Action',
     director: 'Robert Schwentke',
