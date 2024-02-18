@@ -131,7 +131,8 @@ export default function MainScreen({films}: MainScreenProps) {
                   key={film.title}
                   title={film.title}
                   preview={film.preview}
-                  handleCardFocus={handleCardFocusEvent}/>
+                  handleCardFocus={handleCardFocusEvent}
+                />
               )}
             </div>
 

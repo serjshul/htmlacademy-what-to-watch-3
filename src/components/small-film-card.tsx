@@ -13,7 +13,7 @@ export default function SmallFilmCard({id, title, preview, handleCardFocus}: Sma
       <div className="small-film-card__image">
         <img src={preview} alt={title} width="280" height="175" />
       </div>
-      <Link to={'/films/' + id}>
+      <Link to={`/films/` + id}>
         <h3 className="small-film-card__title">
           <a className="small-film-card__link">{title}</a>
         </h3>

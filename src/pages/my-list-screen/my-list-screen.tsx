@@ -59,7 +59,8 @@ export default function MyListScreen({films}: MyListScreenProps) {
                   key={film.title}
                   title={film.title}
                   preview={film.preview}
-                  handleCardFocus={handleCardFocusEvent}/>
+                  handleCardFocus={handleCardFocusEvent}
+                />
               )}
             </div>
           </section>

@@ -1,13 +1,13 @@
 import {Films} from '../../types/film.ts';
-import {useParams} from 'react-router-dom';
+import {Link, useParams} from 'react-router-dom';
 
 type MovieScreenProps = {
   films: Films;
 }
 
 export default function MovieScreen({films}: MovieScreenProps) {
-  const { id } = useParams()
-  const currentFilm = films.find((film) => film.id === id)
+  const { id } = useParams();
+  const currentFilm = films.find((film) => film.id === id);
 
   return (
     <html lang="en">
@@ -73,7 +73,9 @@ export default function MovieScreen({films}: MovieScreenProps) {
                     <span>My list</span>
                     <span className="film-card__count">9</span>
                   </button>
-                  <a href="add-review.html" className="btn film-card__button">Add review</a>
+                  <Link to={'/films/' + id + '/review'}>
+                    <a className="btn film-card__button">Add review</a>
+                  </Link>
                 </div>
               </div>
             </div>
