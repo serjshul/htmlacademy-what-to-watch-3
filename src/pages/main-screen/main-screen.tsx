@@ -1,12 +1,18 @@
 import SmallFilmCard from '../../components/small-film-card.tsx';
+import {Films} from '../../types/film.ts';
+import {useState} from 'react';
 
 type MainScreenProps = {
-  name: string;
-  genre: string;
-  year: number;
+  films: Films;
 }
 
-export default function MainScreen({name, genre, year}: MainScreenProps) {
+export default function MainScreen({films}: MainScreenProps) {
+  const [, setActiveCardId] = useState('initialValue');
+
+  const handleCardFocusEvent = (evt: any) => {
+    setActiveCardId(evt.currentTarget.id);
+  };
+
   return (
     <html lang="en">
       <head>
@@ -55,10 +61,10 @@ export default function MainScreen({name, genre, year}: MainScreenProps) {
               </div>
 
               <div className="film-card__desc">
-                <h2 className="film-card__title">{name}</h2>
+                <h2 className="film-card__title">{films[0].title}</h2>
                 <p className="film-card__meta">
-                  <span className="film-card__genre">{genre}</span>
-                  <span className="film-card__year">{year}</span>
+                  <span className="film-card__genre">{films[0].genre}</span>
+                  <span className="film-card__year">{films[0].year}</span>
                 </p>
 
                 <div className="film-card__buttons">
@@ -119,30 +125,15 @@ export default function MainScreen({name, genre, year}: MainScreenProps) {
             </ul>
 
             <div className="catalog__films-list">
-              <SmallFilmCard filmName="Fantastic Beasts: The Crimes of Grindelwald"/>
-              <SmallFilmCard filmName="Fantastic Beasts: The Crimes of Grindelwald"/>
-              <SmallFilmCard filmName="Fantastic Beasts: The Crimes of Grindelwald"/>
-              <SmallFilmCard filmName="Fantastic Beasts: The Crimes of Grindelwald"/>
-
-              <SmallFilmCard filmName="Fantastic Beasts: The Crimes of Grindelwald"/>
-              <SmallFilmCard filmName="Fantastic Beasts: The Crimes of Grindelwald"/>
-              <SmallFilmCard filmName="Fantastic Beasts: The Crimes of Grindelwald"/>
-              <SmallFilmCard filmName="Fantastic Beasts: The Crimes of Grindelwald"/>
-
-              <SmallFilmCard filmName="Fantastic Beasts: The Crimes of Grindelwald"/>
-              <SmallFilmCard filmName="Fantastic Beasts: The Crimes of Grindelwald"/>
-              <SmallFilmCard filmName="Fantastic Beasts: The Crimes of Grindelwald"/>
-              <SmallFilmCard filmName="Fantastic Beasts: The Crimes of Grindelwald"/>
-
-              <SmallFilmCard filmName="Fantastic Beasts: The Crimes of Grindelwald"/>
-              <SmallFilmCard filmName="Fantastic Beasts: The Crimes of Grindelwald"/>
-              <SmallFilmCard filmName="Fantastic Beasts: The Crimes of Grindelwald"/>
-              <SmallFilmCard filmName="Fantastic Beasts: The Crimes of Grindelwald"/>
-
-              <SmallFilmCard filmName="Fantastic Beasts: The Crimes of Grindelwald"/>
-              <SmallFilmCard filmName="Fantastic Beasts: The Crimes of Grindelwald"/>
-              <SmallFilmCard filmName="Fantastic Beasts: The Crimes of Grindelwald"/>
-              <SmallFilmCard filmName="Fantastic Beasts: The Crimes of Grindelwald"/>
+              {films.map((film) =>
+                <SmallFilmCard
+                  id={film.id}
+                  key={film.title}
+                  title={film.title}
+                  preview={film.preview}
+                  handleCardFocus={handleCardFocusEvent}
+                />
+              )}
             </div>
 
             <div className="catalog__more">

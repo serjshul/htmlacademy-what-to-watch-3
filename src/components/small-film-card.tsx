@@ -1,16 +1,23 @@
+import {Link} from 'react-router-dom';
+
 type SmallFilmCardProps = {
-  filmName: string;
+  id: string;
+  title: string;
+  preview: string;
+  handleCardFocus: (evt: any) => void;
 }
 
-export default function SmallFilmCard({filmName}: SmallFilmCardProps) {
+export default function SmallFilmCard({id, title, preview, handleCardFocus}: SmallFilmCardProps) {
   return (
-    <article className="small-film-card catalog__films-card">
+    <article className="small-film-card catalog__films-card" id={id} onMouseOver={handleCardFocus}>
       <div className="small-film-card__image">
-        <img src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg" alt="Fantastic Beasts: The Crimes of Grindelwald" width="280" height="175" />
+        <img src={preview} alt={title} width="280" height="175" />
       </div>
-      <h3 className="small-film-card__title">
-        <a className="small-film-card__link" href="film-page.html">{filmName}</a>
-      </h3>
+      <Link to={`/films/` + id}>
+        <h3 className="small-film-card__title">
+          <a className="small-film-card__link">{title}</a>
+        </h3>
+      </Link>
     </article>
   );
 }
