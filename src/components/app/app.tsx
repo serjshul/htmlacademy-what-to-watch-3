@@ -30,7 +30,7 @@ export default function App({films}: AppProps) {
             </PrivateRoute>
           }
         />
-        <Route path={AppRoute.Films} element={<MovieScreen />} />
+        <Route path={AppRoute.Films} element={<MovieScreen films={films}/>} />
         <Route path={AppRoute.AddReview} element={<AddReviewScreen films={films}/>} />
         <Route path={AppRoute.Player} element={<PlayerScreen films={films}/>} />
         <Route path="*" element={<PageNotFoundScreen />} />

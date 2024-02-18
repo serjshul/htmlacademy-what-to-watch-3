@@ -1,4 +1,4 @@
-import {Films} from "../../types/film.ts";
+import {Films} from '../../types/film.ts';
 
 type PlayerScreenProps = {
   films: Films;

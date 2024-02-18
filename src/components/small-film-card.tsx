@@ -1,3 +1,5 @@
+import {Link} from 'react-router-dom';
+
 type SmallFilmCardProps = {
   id: string;
   title: string;
@@ -11,9 +13,11 @@ export default function SmallFilmCard({id, title, preview, handleCardFocus}: Sma
       <div className="small-film-card__image">
         <img src={preview} alt={title} width="280" height="175" />
       </div>
-      <h3 className="small-film-card__title">
-        <a className="small-film-card__link" href="film-page.html">{title}</a>
-      </h3>
+      <Link to={'/films/' + id}>
+        <h3 className="small-film-card__title">
+          <a className="small-film-card__link">{title}</a>
+        </h3>
+      </Link>
     </article>
   );
 }
