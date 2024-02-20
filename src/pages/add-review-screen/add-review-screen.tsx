@@ -8,7 +8,7 @@ type AddReviewScreenProps = {
 
 export default function AddReviewScreen({films}: AddReviewScreenProps) {
   const { id } = useParams();
-  const currentFilm = films.find((film) => film.id === id);
+  const currentFilm = films.find((film) => film.id.toString() === id);
 
   const [formData, setFormData] = useState({
     review: '',
@@ -119,7 +119,8 @@ export default function AddReviewScreen({films}: AddReviewScreenProps) {
 
               <div className="add-review__text">
                 <textarea className="add-review__textarea" name="review-text" id="review-text"
-                  placeholder="Review text" onChange={handleFieldChange}/>
+                  placeholder="Review text" onChange={handleFieldChange}
+                />
                 <div className="add-review__submit">
                   <button className="add-review__btn" type="submit">Post</button>
                 </div>

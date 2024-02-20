@@ -7,10 +7,10 @@ type MainScreenProps = {
 }
 
 export default function MainScreen({films}: MainScreenProps) {
-  const [, setActiveCardId] = useState('initialValue');
+  const [focusedCardId, setFocusedCardId] = useState(0);
 
   const handleCardFocusEvent = (evt: any) => {
-    setActiveCardId(evt.currentTarget.id);
+    setFocusedCardId(evt.currentTarget.id);
   };
 
   return (
@@ -131,6 +131,8 @@ export default function MainScreen({films}: MainScreenProps) {
                   key={film.title}
                   title={film.title}
                   preview={film.preview}
+                  video={film.video}
+                  isFocused={film.id == focusedCardId}
                   handleCardFocus={handleCardFocusEvent}
                 />
               )}
