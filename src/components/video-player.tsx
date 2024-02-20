@@ -1,11 +1,13 @@
-import {Fragment, useEffect, useRef, useState} from 'react';
+import {useEffect, useRef, useState} from 'react';
 
 type VideoPlayerProps = {
   src: string;
+  poster: string;
+  isFocused: boolean;
 }
 
-function VideoPlayer({src}: VideoPlayerProps): JSX.Element {
-  const [isLoaded, setIsLoaded] = useState(false);
+function VideoPlayer({src, poster, isFocused}: VideoPlayerProps): JSX.Element {
+  const [isLoaded, setIsLoaded] = useState(true);
 
   const videoRef = useRef<HTMLVideoElement | null>(null);
 
@@ -34,19 +36,23 @@ function VideoPlayer({src}: VideoPlayerProps): JSX.Element {
       return;
     }
 
-    playerElement.play();
-  }, [isLoaded]);
+    if (isFocused) {
+      playerElement.play();
+    } else {
+      playerElement.load();
+    }
+  }, [isLoaded, isFocused]);
 
   return (
-    <Fragment>
-      <div className="trailer__status">
-        <video
-          src={src}
-          ref={videoRef}
-          data-testid="video"
-        />
-      </div>
-    </Fragment>
+    <div className="trailer__status">
+      <video
+        loop muted autoPlay={false}
+        width="280" height="175"
+        src={src}
+        poster={poster}
+        ref={videoRef}
+      />
+    </div>
   );
 }
 

@@ -7,7 +7,7 @@ type MovieScreenProps = {
 
 export default function MovieScreen({films}: MovieScreenProps) {
   const { id } = useParams();
-  const currentFilm = films.find((film) => film.id === id);
+  const currentFilm = films.find((film) => film.id.toString() === id);
 
   return (
     <html lang="en">
@@ -73,7 +73,7 @@ export default function MovieScreen({films}: MovieScreenProps) {
                     <span>My list</span>
                     <span className="film-card__count">9</span>
                   </button>
-                  <Link to={'/films/' + id + '/review'}>
+                  <Link to={`/films/${id}/review`}>
                     <a className="btn film-card__button">Add review</a>
                   </Link>
                 </div>
