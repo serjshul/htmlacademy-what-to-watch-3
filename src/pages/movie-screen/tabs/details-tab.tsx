@@ -15,7 +15,7 @@ export default function DetailsTab({director, cast, genre, year}: DetailsTabProp
         </p>
         <p className="film-card__details-item">
           <strong className="film-card__details-name">Starring</strong>
-          <span className="film-card__details-value">{cast}</span>
+          <span className="film-card__details-value">{cast.join(', ')}</span>
         </p>
       </div>
 

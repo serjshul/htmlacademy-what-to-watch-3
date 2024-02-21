@@ -1,13 +1,80 @@
 import {Films} from '../../types/film.ts';
 import {Link, useParams} from 'react-router-dom';
+import {useState} from 'react';
+import DetailsTab from './tabs/details-tab.tsx';
+import ReviewsTab from './tabs/reviews-tab.tsx';
+import OverviewTab from './tabs/overview-tab.tsx';
+import cn from 'classnames';
 
 type MovieScreenProps = {
   films: Films;
 }
 
+const OVERVIEW_TAB = "overviewTab"
+const DETAILS_TAB = "detailsTab"
+const REVIEWS_TAB = "reviewsTab"
+
 export default function MovieScreen({films}: MovieScreenProps) {
   const { id } = useParams();
   const currentFilm = films.find((film) => film.id.toString() === id);
+
+  const [currentTab, setCurrentTab] = useState(OVERVIEW_TAB)
+  const [isOverviewTabPressed, setIsOverviewTabPressed] = useState(true);
+  const [isDetailsTabPressed, setIsDetailsTabPressed] = useState(false);
+  const [isReviewsTabPressed, setIsReviewsTabPressed] = useState(false);
+
+  const setOverviewTab = () => {
+    setCurrentTab(OVERVIEW_TAB)
+    setIsOverviewTabPressed(true)
+    setIsDetailsTabPressed(false)
+    setIsReviewsTabPressed(false)
+  }
+
+  const setDetailsTab = () => {
+    setCurrentTab(DETAILS_TAB)
+    setIsOverviewTabPressed(false)
+    setIsDetailsTabPressed(true)
+    setIsReviewsTabPressed(false)
+  }
+
+  const setReviewsTab = () => {
+    setCurrentTab(REVIEWS_TAB)
+    setIsOverviewTabPressed(false)
+    setIsDetailsTabPressed(false)
+    setIsReviewsTabPressed(true)
+  }
+
+  const setTabInPage = () => {
+    switch(currentTab) {
+      case DETAILS_TAB: {
+        return (
+          <DetailsTab
+            director={currentFilm!!.director}
+            cast={currentFilm!!.cast}
+            genre={currentFilm!!.genre}
+            year={currentFilm!!.year}
+          />
+        );
+      }
+      case REVIEWS_TAB: {
+        return (
+          <ReviewsTab/>
+        );
+      }
+      default: {
+        return (
+          <OverviewTab
+            description={currentFilm!!.description}
+            director={currentFilm!!.director}
+            cast={currentFilm!!.cast}
+            rating={currentFilm!!.rating}
+            ratingDescription={currentFilm!!.ratingDescription}
+            ratingCounter={currentFilm!!.ratingCounter}
+          />
+        );
+      }
+    }
+  }
 
   return (
     <html lang="en">
@@ -90,33 +157,26 @@ export default function MovieScreen({films}: MovieScreenProps) {
               <div className="film-card__desc">
                 <nav className="film-nav film-card__nav">
                   <ul className="film-nav__list">
-                    <li className="film-nav__item film-nav__item--active">
-                      <a href="#" className="film-nav__link">Overview</a>
+                    <li className={cn('film-nav__item ', {
+                        'btn-film-nav__item--active': isOverviewTabPressed
+                      })}>
+                      <a className="film-nav__link" onClick={setOverviewTab}>Overview</a>
                     </li>
-                    <li className="film-nav__item">
-                      <a href="#" className="film-nav__link">Details</a>
+                    <li className={cn('film-nav__item ', {
+                      'btn-film-nav__item--active': isDetailsTabPressed
+                    })}>
+                      <a className="film-nav__link" onClick={setDetailsTab}>Details</a>
                     </li>
-                    <li className="film-nav__item">
-                      <a href="#" className="film-nav__link">Reviews</a>
+                    <li className={cn('film-nav__item ', {
+                      'btn-film-nav__item--active': isReviewsTabPressed
+                    })}>
+                      <a className="film-nav__link" onClick={setReviewsTab}>Reviews</a>
                     </li>
                   </ul>
                 </nav>
 
-                <div className="film-rating">
-                  <div className="film-rating__score">{currentFilm?.rating}</div>
-                  <p className="film-rating__meta">
-                    <span className="film-rating__level">{currentFilm?.ratingDescription}</span>
-                    <span className="film-rating__count">{currentFilm?.ratingCounter} ratings</span>
-                  </p>
-                </div>
+                {setTabInPage()}
 
-                <div className="film-card__text">
-                  <p>{currentFilm?.description}</p>
-
-                  <p className="film-card__director"><strong>Director: {currentFilm?.director}</strong></p>
-
-                  <p className="film-card__starring"><strong>Starring: {currentFilm?.cast}</strong></p>
-                </div>
               </div>
             </div>
           </div>

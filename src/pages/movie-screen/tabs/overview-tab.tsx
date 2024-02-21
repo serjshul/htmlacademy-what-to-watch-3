@@ -23,7 +23,7 @@ export default function OverviewTab(
       <div className="film-card__text">
         <p>{description}</p>
         <p className="film-card__director"><strong>Director: {director}</strong></p>
-        <p className="film-card__starring"><strong>Starring: {cast}</strong></p>
+        <p className="film-card__starring"><strong>Starring: {cast.join(', ')}</strong></p>
       </div>
     </div>
   );
