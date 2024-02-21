@@ -5,6 +5,7 @@ import DetailsTab from './tabs/details-tab.tsx';
 import ReviewsTab from './tabs/reviews-tab.tsx';
 import OverviewTab from './tabs/overview-tab.tsx';
 import cn from 'classnames';
+import SmallFilmCard from "../../components/small-film-card.tsx";
 
 type MovieScreenProps = {
   films: Films;
@@ -17,6 +18,8 @@ const REVIEWS_TAB = "reviewsTab"
 export default function MovieScreen({films}: MovieScreenProps) {
   const { id } = useParams();
   const currentFilm = films.find((film) => film.id.toString() === id);
+
+  const moreLikeThisFilms = films.slice(0, 4)
 
   const [currentTab, setCurrentTab] = useState(OVERVIEW_TAB)
   const [isOverviewTabPressed, setIsOverviewTabPressed] = useState(true);
@@ -43,6 +46,12 @@ export default function MovieScreen({films}: MovieScreenProps) {
     setIsDetailsTabPressed(false)
     setIsReviewsTabPressed(true)
   }
+
+  const [focusedCardId, setFocusedCardId] = useState(0);
+
+  const handleCardFocusEvent = (evt: any) => {
+    setFocusedCardId(evt.currentTarget.id);
+  };
 
   const setTabInPage = () => {
     switch(currentTab) {
@@ -187,41 +196,17 @@ export default function MovieScreen({films}: MovieScreenProps) {
             <h2 className="catalog__title">More like this</h2>
 
             <div className="catalog__films-list">
-              <article className="small-film-card catalog__films-card">
-                <div className="small-film-card__image">
-                  <img src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg" alt="Fantastic Beasts: The Crimes of Grindelwald" width="280" height="175" />
-                </div>
-                <h3 className="small-film-card__title">
-                  <a className="small-film-card__link" href="film-page.html">Fantastic Beasts: The Crimes of Grindelwald</a>
-                </h3>
-              </article>
-
-              <article className="small-film-card catalog__films-card">
-                <div className="small-film-card__image">
-                  <img src="img/bohemian-rhapsody.jpg" alt="Bohemian Rhapsody" width="280" height="175" />
-                </div>
-                <h3 className="small-film-card__title">
-                  <a className="small-film-card__link" href="film-page.html">Bohemian Rhapsody</a>
-                </h3>
-              </article>
-
-              <article className="small-film-card catalog__films-card">
-                <div className="small-film-card__image">
-                  <img src="img/macbeth.jpg" alt="Macbeth" width="280" height="175" />
-                </div>
-                <h3 className="small-film-card__title">
-                  <a className="small-film-card__link" href="film-page.html">Macbeth</a>
-                </h3>
-              </article>
-
-              <article className="small-film-card catalog__films-card">
-                <div className="small-film-card__image">
-                  <img src="img/aviator.jpg" alt="Aviator" width="280" height="175" />
-                </div>
-                <h3 className="small-film-card__title">
-                  <a className="small-film-card__link" href="film-page.html">Aviator</a>
-                </h3>
-              </article>
+              {moreLikeThisFilms.map((film) =>
+                <SmallFilmCard
+                  id={film.id}
+                  key={film.title}
+                  title={film.title}
+                  preview={film.preview}
+                  video={film.video}
+                  isFocused={film.id == focusedCardId}
+                  handleCardFocus={handleCardFocusEvent}
+                />
+              )}
             </div>
           </section>
 
