@@ -15,6 +15,8 @@ const OVERVIEW_TAB = "overviewTab"
 const DETAILS_TAB = "detailsTab"
 const REVIEWS_TAB = "reviewsTab"
 
+// 6.1
+
 export default function MovieScreen({films}: MovieScreenProps) {
   const { id } = useParams();
   const currentFilm = films.find((film) => film.id.toString() === id);
