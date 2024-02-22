@@ -18,6 +18,7 @@ const REVIEWS_TAB = "reviewsTab"
 // 6.1
 // 6.2
 // 7.1
+// 7.2
 
 export default function MovieScreen({films}: MovieScreenProps) {
   const { id } = useParams();
